@@ -1,5 +1,5 @@
 let lineStatus = null;
-let Stations = null; 
+let allStations = {}; 
 
 async function fetchLineStatus() {
   const res = await fetch('https://api.tfl.gov.uk/Line/Mode/tube/Status');
@@ -18,23 +18,38 @@ async function fetchAllStations(lineId) {
     const res = await fetch(`https://api.tfl.gov.uk/Line/${lineId}/Route/Sequence/outbound`);
     const data = await res.json();
     
-    stations = data.stopPointSequences[0].stopPoint.map(line => {
+    allStations[lineId] = data.stopPointSequences[0].stopPoint.map(line => {
         return{
             name: line.name,
             lat: line.lat,
             lon: line.lon,   
         }
     });
-    console.log(stations)
+    console.log(allStations)
 }
 async function loadAll() {
   await Promise.all([
     fetchLineStatus(),
-    fetchAllStations('jubilee')  
+    fetchAllStations('jubilee'),
+    fetchAllStations('central'),
+    fetchAllStations('bakerloo'),
+    fetchAllStations('district'),
+    fetchAllStations('circle'),
+    fetchAllStations('metropolitan'),
+    fetchAllStations('northern'),
+    fetchAllStations('piccadilly'),
+    fetchAllStations('victoria'),
+    fetchAllStations('hammersmith-city'),
+    fetchAllStations('waterloo-city'),
   ]);
 
   init(lineStatus);
 }
 
+
 loadAll();
 
+setInterval(async () => {
+  await fetchLineStatus();
+  redraw(lineStatus);
+}, 30000);
