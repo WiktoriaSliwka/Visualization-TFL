@@ -1,0 +1,24 @@
+The function should take just data as a parameter — data is your lineStatus array which has everything you need
+You're using items.forEach but the array is called data
+The container ID should be 'legend' not lineId
+The list item needs to be appended to the list, and the list to the container at the end
+You need to convert the hex colour from your lineColours object to a CSS colour string
+
+Status bar and countdown styling generated with the assistance of Claude.ai (Anthropic, 2026). Available at: https://claude.ai
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations
+
+AI Disclaimer
+This project was developed with the assistance of Claude.ai, an AI assistant made by Anthropic. Claude was used as a guided learning tool throughout the development process rather than as a code generator. Concepts including asynchronous JavaScript, the PixiJS rendering pipeline, coordinate projection, simplex noise and API data structuring were explained and worked through interactively. Code was written incrementally by the student with Claude providing guidance, corrections and explanations at each step. All creative decisions — including the visual concept, data sources, colour language and interaction design — were made by the student. Claude.ai was not used to generate complete solutions but to support understanding and problem solving throughout the build process.
+
+ethical consideration - add a short section to your bibliography or documentation about TfL's open data policy and any implications of using live transport data.
+
+ad read.me adn git
+
+early photos of data exploration 
+
+add short description on canvas
+
+add colour key
+
+pdf- background, research, process and references

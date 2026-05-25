@@ -5,33 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFL Installation</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/pixi-filters@6/dist/pixi-filters.js"></script>
-  <!-- Simplex Noise -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/simplex-noise@4/dist/cjs/simplex-noise.js"></script> --> -->
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-  <script src="project.js"></script>
-  <script src="main.js"></script>
+</head>
 
 <body>
-    
-</body>
+    <div class="topnav">
+        <a class="active" onclick="goTo('intro')">Introduction</a>
+        <a onclick="goTo('project')">Installation</a>
+        <a onclick="goTo('documentation')">Documentation</a>
+        <a onclick="goTo('bibliography')">Bibliography</a>
+    </div>
 
-<!-- <style>
-    /* ── Fonts ── */
- @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@200;400;700&display=swap');
+    <section id="intro" class="page active">
+        <h1>TFL Installation</h1>
+           <p>LONDONS COMMUNITY runs like clockwork. With roughly 5 Million passenger journeys 
+           made in London on a busy day. We spend hours commuting to-and-from work, to different boroughs 
+           and the other side of the Thames. In 1863 the first tube line was opened and over time TFL expanded 
+           in central London and into it’s outskirts. The underground has shaped London’s physical and economical 
+           geography. Creating suburbs and connecting communities.</p>  
+
+           <p>Londoners dependence on the tube is quickly realized when we face any disturbance. Ageing infrastructure,
+           out of date system and TFL employees striking for better work conditions, cancellations and delays have 
+           become the daily norm and strikes halting our day.</p>
+
+            <p>The following installation is driven by live TFL data. Each tube line is visible with lights flickering and shifting colours in real time. 
+            Station positions are displayed along the tube route. The changing colours and energy of the installations displays the tubes severity status.
+            This installation makes visible what Londoners experience daily. A NETWORK UNDER STRAIN. By mapping live disruption data onto light and colour, 
+            the installation invites the viewer to sit with the reality of a city dependent on infrastructure that increasingly fails it.</p>
+
+            <p>At what point does unreliability stop being an inconvenience and start being a crisis?</p>
+
+        <div class="button-bottom"><button onclick="goTo('project')">Next</button></div>
+
+    </section>
+
+    <section id="project" class="page">
+    <div id="legend">
+        <div class="colour-key">
+            <p class="key-title">Station Status</p>
+            <div class="key-item">
+                <span class="key-dot-rainbow"></span>
+                <span class="key-label">Good Service</span>
+            </div>
+            <div class="key-item">
+                <span class="key-dot" style="background: #ebb563;"></span>
+                <span class="key-label">Minor Delays</span>
+            </div>
+            <div class="key-item">
+                <span class="key-dot" style="background: #4f0e08;"></span>
+                <span class="key-label">Severe Disruption</span>
+            </div>
+        </div>
+        <div class="key-divider"></div>
+        <div id="line-list"></div>
+    </div>
+
+    <div id="status-bar">
+        <span class="status-dot"></span>
+        <span>Live Feed</span>
+        <span>Last updated: <span id="last-update">--:--:--</span></span>
+        <span>Next refresh: <span id="next-poll">30s</span></span>
+    </div>
+
+    <div class="button-bottom">
+        <button onclick="goTo('intro')">Back</button>
+        <button onclick="goTo('documentation')">Next</button>
+    </div>
+</section>
+
+<section id="documentation" class="page">
+    <div class="button-bottom">
+        <p>github link</p>
+        <button onclick="goTo('project')">Back</button>
+        <button onclick="goTo('bibliography')">Next</button>
+    </div>
+</section>
+
    
- 
-body {
-     width: 100%; height: 100%;
-    background: var(--black);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    overflow: hidden;
-       }
+
+    <section id="bibliography" class="page">
+
+        <h1>Bibliography</h1>
+
+        <p>https://londonmymind.com/london-tube-colors/</p>
+        <p>https://www.youtube.com/watch?v=ajaduDDePIY</p>
+        <p>https://www.w3schools.com/tags/tag_button.asp</p>
+        <p>https://dev.to/nombrekeff/routing-is-fun-the-web-is-weird-but-fun-iap</p>
+        <p>https://www.w3schools.com/CSS/css3_buttons.asp</p>
+        <p>https://www.w3schools.com/HOWTO/howto_js_topnav.asp</p>
+        <p>https://data.london.gov.uk/blog/the-economic-impacts-under-future-funding-scenarios-for-tfl/</p>
+        <p>https://www.bbc.co.uk/news/articles/c0ljyd03n88o</p>
+        <p>https://www.standard.co.uk/news/transport/tube-strike-lost-fares-cost-revealed-by-tfl-b1262757.html</p>
+        <p>https://www.thecaterer.com/news/london-pubs-hit-by-54-drop-in-revenue-amid-tube-strikes</p>
 
 
- </style> -->
+        <div class="button-bottom"><button onclick="goTo('documentation')"> Back</button></div>
+    </section>
 
+   
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pixi-filters@6/dist/pixi-filters.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js"></script>
+    <script src="project.js"></script>
+    <script src="main.js"></script>
+</body>
 </html>
