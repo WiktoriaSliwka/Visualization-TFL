@@ -1,33 +1,27 @@
 let lineStatus = null;
 let allStations = {};
 
-
 function goTo(id) {
-
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 
-    // top-page navigation bar routing
     document.querySelectorAll('.topnav a').forEach(a => a.classList.remove('active'));
     document.querySelector(`.topnav a[onclick="goTo('${id}')"]`).classList.add('active');
-
-    const statusBar = document.getElementById('status-bar');
-    if (statusBar) {
-      statusBar.classList.toggle('visible', id === 'project');
-}
 
     const canvas = document.querySelector('canvas');
     if (canvas) {
         canvas.style.display = id === 'project' ? 'block' : 'none';
+        canvas.style.pointerEvents = id === 'project' ? 'auto' : 'none';
     }
 
-    if (id === 'project') {
-        buildLegend(lineStatus);
+    const statusBar = document.getElementById('status-bar');
+    if (statusBar) {
+        statusBar.classList.toggle('visible', id === 'project');
     }
 
     if (id === 'project' && lineStatus) {
-    buildLegend(lineStatus);
-}
+        buildLegend(lineStatus);
+    }
 }
 
 // connecting to the api 
@@ -43,23 +37,23 @@ async function fetchLineStatus() {
     };
 });
 }
-
 // fetching line names and station locations 
-
 async function fetchAllStations(lineId) {
-    const res = await fetch(`https://api.tfl.gov.uk/Line/${lineId}/Route/Sequence/outbound`);
-    const data = await res.json();
+    const routeRes = await fetch(`https://api.tfl.gov.uk/Line/${lineId}/Route/Sequence/outbound`);
+    const routeData = await routeRes.json();
     
-    allStations[lineId] = data.stopPointSequences[0].stopPoint.map(line => {
-        return{
-            name: line.name,
-            lat: line.lat,
-            lon: line.lon,   
-        }
-    });
-    console.log(allStations)
-}
+    const stopsRes = await fetch(`https://api.tfl.gov.uk/Line/${lineId}/StopPoints`);
+    const stopsData = await stopsRes.json();
 
+    allStations[lineId] = {
+        route: routeData.stopPointSequences,
+        stops: stopsData.map(s => ({
+            name: s.commonName,
+            lat: s.lat,
+            lon: s.lon,
+        }))
+    };
+}
 //fetching status for every line
 async function loadAll() {
   await Promise.all([
@@ -100,9 +94,7 @@ function updateStatusBar() {
   startCountdown();
 }, 30000); //30 seconds - maybe i'll change to later
 }
-
 //countdown creation
-
 function startCountdown() {
     countdown = 30;
     clearInterval(countdownInterval);
