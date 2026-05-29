@@ -1,4 +1,4 @@
-//Shift + Alt + F in VS Code to auto-format
+//insert button in VS Code to stop auto delete when typing
 let stationDots = [];
 let app = null;
 const simplex = new SimplexNoise();
